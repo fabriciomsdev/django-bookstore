@@ -26,3 +26,16 @@ class BookAnalysesService:
         )
 
         return authors_books
+
+    def list_all_authors_their_books(self):
+        authors_and_books = Author.objects.annotate(
+            books_list=Coalesce(Subquery(
+                Book.objects.filter(author=OuterRef('pk'))
+                .values('author')
+                .annotate(books=StringAgg('title', delimiter=', '))
+                .values('books'),
+                output_field=CharField()
+            ), Value('No books'))
+        )
+
+        return authors_and_books
