@@ -34,6 +34,12 @@ This repository contains examples of Django query optimization techniques. The e
     python manage.py createsuperuser
 ```
 
+5. feed the database with some data:
+
+```bash
+    python manage.py generate_books_csv && python manage.py load_books_from_csv
+```
+
 ## Commands to run analysis and see the results
 
 1. Run the Django shell:
