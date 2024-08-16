@@ -32,8 +32,8 @@ class Command(BaseCommand):
                 title_qty = entry['books']
                 print(f'{author}: {title_qty}')
 
-        elif analyze_kind == 'list_all_and_books':
-            authors_and_books = self.service.list_all_and_books()
+        elif analyze_kind == 'list_all_authors_their_books':
+            authors_and_books = self.service.list_all_authors_their_books()
 
             for author in authors_and_books:
                 print(f'{author.name}: {author.books_list} \n')
