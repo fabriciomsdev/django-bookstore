@@ -14,3 +14,15 @@ class BookAnalysesService:
         )
 
         return books
+
+    def get_books_qty_for_each_author(self):
+        authors_books = (
+            Book.objects
+            .select_related('author')
+            .values('author__name')
+            .annotate(books=Count('title'))
+            .order_by('books')
+            .all()
+        )
+
+        return authors_books
